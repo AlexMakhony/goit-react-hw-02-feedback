@@ -2,8 +2,14 @@
 import React, { Component } from "react";
 import {Statistics} from "./Statistics/Statistics";
 import {FeedbackOptions} from "./FeedbackOptions/FeedbackOptions";
-import {Section} from "./Section/Section";
 import { Notification } from "./Notification/Notification";
+import {
+  FeedBackWrapper,
+  LikeWrapper,
+  ButtonsArea,
+  Title,
+  ButtonsWrapper,
+} from "./App.styled";
 
 
 export class App extends Component {
@@ -31,15 +37,19 @@ export class App extends Component {
     const positivePercentage = total > 0 ? Math.round((good / total) * 100) : 0;
     return (
       <>
-        <Section title="Please leave feedback">
+      <FeedBackWrapper>
+        <ButtonsArea>
+          <Title>Чекаємо на Ваш відгук</Title>
+          <ButtonsWrapper>
           <FeedbackOptions
-            options={{ good: "Good", neutral: "Neutral", bad: "Bad" }}
+            options={{ good: "Супер", neutral: "Добре", bad: "Погано" }}
             onLeaveFeedback={this.onLeaveFeedback}
           />
-        </Section>
-        <Section title="Statistics">
+          </ButtonsWrapper>
+        </ButtonsArea>
+        <LikeWrapper title="Statistics">
           {total === 0 ? (
-            <Notification message="Hey, there is no stat"></Notification>
+            <Notification message="Ooops немає відгуків"></Notification>
           ) : (
             <Statistics
               good={good}
@@ -49,7 +59,8 @@ export class App extends Component {
               positivePercentage={positivePercentage}
             />
           )}
-        </Section>
+        </LikeWrapper>
+      </FeedBackWrapper>
       </>
     );}
   }
