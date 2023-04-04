@@ -10,6 +10,7 @@ import {
   Title,
   ButtonsWrapper,
 } from "./App.styled";
+import PropTypes from 'prop-types';
 
 
 export class App extends Component {
@@ -42,7 +43,10 @@ export class App extends Component {
           <Title>Чекаємо на Ваш відгук</Title>
           <ButtonsWrapper>
           <FeedbackOptions
-            options={{ good: "Супер", neutral: "Добре", bad: "Погано" }}
+            options={{ 
+              good: "Супер", 
+              neutral: "Добре", 
+              bad: "Погано" }}
             onLeaveFeedback={this.onLeaveFeedback}
           />
           </ButtonsWrapper>
@@ -65,3 +69,16 @@ export class App extends Component {
     );}
   }
     
+  App.propTypes = {
+    options: PropTypes.shape({
+      good: PropTypes.string.isRequired,
+      neutral: PropTypes.string.isRequired,
+      bad: PropTypes.string.isRequired,
+    }),
+    onLeaveFeedback: PropTypes.func,
+    good: PropTypes.number,
+    neutral: PropTypes.number,
+    bad: PropTypes.number,
+    total: PropTypes.number,
+    positivePercentage: PropTypes.number,
+  };
